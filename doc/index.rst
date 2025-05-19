@@ -1,125 +1,296 @@
 ###########################
 Amazon SageMaker Python SDK
 ###########################
-Amazon SageMaker Python SDK is an open source library for training and deploying machine-learned models on Amazon SageMaker.
 
-With the SDK, you can train and deploy models using popular deep learning frameworks, algorithms provided by Amazon, or your own algorithms built into SageMaker-compatible Docker images.
+.. image:: https://readthedocs.org/projects/sagemaker/badge/?version=stable
+   :target: https://sagemaker.readthedocs.io/en/stable/
+   :alt: Documentation Status
 
-Here you'll find an overview and API documentation for SageMaker Python SDK. The project homepage is in Github: https://github.com/aws/sagemaker-python-sdk, where you can find the SDK source and installation instructions for the library.
+Amazon SageMaker Python SDK is an open source library for training and deploying machine learning models on Amazon SageMaker.
 
+.. raw:: html
 
-********
-Overview
-********
+   <div class="sagemaker-overview">
+     <div class="overview-card">
+       <h3>Train</h3>
+       <p>Train ML models with built-in algorithms or your own code</p>
+     </div>
+     <div class="overview-card">
+       <h3>Deploy</h3>
+       <p>Deploy models for real-time or batch inference</p>
+     </div>
+     <div class="overview-card">
+       <h3>MLOps</h3>
+       <p>Manage the complete ML lifecycle</p>
+     </div>
+   </div>
+
+.. contents::
+   :local:
+   :depth: 2
+
+************
+Installation
+************
+
+Install the latest stable version:
+
+.. code:: bash
+
+   pip install sagemaker
+
+For more details and options, see the :doc:`installation guide <installation>`.
+
+***********
+Quick Start
+***********
+
+Train and deploy your first model in minutes:
+
+.. code:: python
+
+   import sagemaker
+   from sagemaker.sklearn import SKLearn
+   
+   # Initialize a SageMaker session
+   sagemaker_session = sagemaker.Session()
+   
+   # Define an estimator
+   estimator = SKLearn(
+       entry_point='script.py',
+       framework_version='1.0-1',
+       instance_type='ml.m5.xlarge',
+       instance_count=1,
+       role=sagemaker.get_execution_role()
+   )
+   
+   # Train the model
+   estimator.fit({'training': 's3://your-bucket/path/to/training/data'})
+   
+   # Deploy the model
+   predictor = estimator.deploy(initial_instance_count=1, instance_type='ml.m5.xlarge')
+   
+   # Make predictions
+   predictions = predictor.predict(data)
+   
+   # Clean up when done
+   predictor.delete_endpoint()
+
+For a more comprehensive guide, see the :doc:`quickstart guide <quickstart>`.
+
+*****************
+SageMaker Core
+*****************
+
+The SageMaker Python SDK provides several high-level abstractions for working with Amazon SageMaker:
+
+- **ModelTrainer**: New interface encapsulating training on SageMaker
+- **Estimators**: Encapsulate training on SageMaker
+- **Models**: Encapsulate built ML models
+- **Predictors**: Provide real-time inference against a SageMaker endpoint
+- **Session**: Provides methods for working with SageMaker resources
+- **Transformers**: Encapsulate batch transform jobs for inference
+- **Processors**: Encapsulate processing jobs for data processing
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     overview
     v2
-
-The SageMaker Python SDK APIs:
-
-.. toctree::
-    :maxdepth: 2
-
     api/index
 
+*****************
+Key Components
+*****************
 
-**********
-Frameworks
-**********
+Training
+========
 
-The SageMaker Python SDK supports managed training and inference for a variety of machine learning frameworks:
+Train machine learning models at scale with built-in algorithms or your own custom code.
 
-.. toctree::
-    :maxdepth: 2
+**SageMaker Debugger**
 
-    frameworks/index
-
-
-********************************
-SageMaker Built-in Algorithms
-********************************
-Amazon SageMaker provides implementations of some common machine learning algorithms optimized for GPU architecture and massive datasets.
+Automatically detect anomalies during training, monitor resource utilization, and gain insights into your model's behavior.
 
 .. toctree::
-    :maxdepth: 2
-
-    algorithms/index
-
-
-*************
-Workflows
-*************
-Orchestrate your SageMaker training and inference workflows with Airflow and Kubernetes.
-
-.. toctree::
-    :maxdepth: 2
-
-    workflows/index
-
-
-****************************
-Amazon SageMaker Experiments
-****************************
-You can use Amazon SageMaker Experiments to track machine learning experiments.
-
-.. toctree::
-    :maxdepth: 2
-
-    experiments/index
-
-*************************
-Amazon SageMaker Debugger
-*************************
-You can use Amazon SageMaker Debugger to automatically detect anomalies while training your machine learning models.
-
-.. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    amazon_sagemaker_debugger
 
+**Frameworks Support**
 
-******************************
-Amazon SageMaker Feature Store
-******************************
-You can use Feature Store to store features and associated metadata, so features can be discovered and reused.
+Train and deploy models using popular deep learning frameworks:
+
+- TensorFlow
+- PyTorch
+- MXNet
+- Scikit-learn
+- XGBoost
+- Hugging Face
+- And more...
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 1
+
+    frameworks/index
+
+**Built-in Algorithms**
+
+Use Amazon SageMaker's optimized implementations of common ML algorithms:
+
+.. toctree::
+    :maxdepth: 1
+
+    algorithms/index
+
+Inference
+=========
+
+Deploy your models for real-time or batch inference:
+
+- Real-time endpoints for low-latency predictions
+- Batch transform for large datasets
+- Multi-model endpoints for hosting multiple models
+- Serverless inference for cost-effective deployment
+
+MLOps
+=====
+
+Manage the complete machine learning lifecycle:
+
+**Feature Store**
+
+Store, share, and manage features and their metadata:
+
+.. toctree::
+   :maxdepth: 1
 
    amazon_sagemaker_featurestore
 
+**Model Monitoring**
 
-*********************************
-Amazon SageMaker Model Monitoring
-*********************************
-You can use Amazon SageMaker Model Monitoring to automatically detect concept drift by monitoring your machine learning models.
+Automatically detect concept drift and data quality issues:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     amazon_sagemaker_model_monitoring
 
+**Processing**
 
-***************************
-Amazon SageMaker Processing
-***************************
-You can use Amazon SageMaker Processing to perform data processing tasks such as data pre- and post-processing, feature engineering, data validation, and model evaluation
+Perform data processing tasks at scale:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     amazon_sagemaker_processing
 
+**Model Building Pipeline**
 
-*****************************************
-Amazon SageMaker Model Building Pipeline
-*****************************************
-You can use Amazon SageMaker Model Building Pipelines to orchestrate your machine learning workflow.
+Orchestrate your ML workflows:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     amazon_sagemaker_model_building_pipeline
+
+**Experiments**
+
+Track and compare training runs:
+
+.. toctree::
+    :maxdepth: 1
+
+    experiments/index
+
+**Workflows**
+
+Integrate with Airflow and Kubernetes:
+
+.. toctree::
+    :maxdepth: 1
+
+    workflows/index
+
+JumpStart
+=========
+
+Access pre-trained models and solution templates:
+
+- Deploy foundation models with minimal code
+- Fine-tune models on your data
+- Use solution templates for common ML use cases
+
+.. toctree::
+    :maxdepth: 1
+
+    doc_utils/pretrainedmodels
+
+*****************
+SDK Features
+*****************
+
+Intelligent Defaults
+===================
+
+The SageMaker Python SDK provides intelligent defaults that simplify the machine learning workflow:
+
+- Automatic resource selection
+- Pre-configured environments for popular frameworks
+- Sensible parameter defaults based on best practices
+- Simplified API for common tasks
+
+Local Mode
+=========
+
+Develop and test your training and inference code locally before deploying to the cloud:
+
+.. code:: python
+
+   # Run training locally
+   estimator = PyTorch(
+       entry_point='train.py',
+       instance_type='local',
+       ...
+   )
+   
+   # Deploy locally
+   predictor = estimator.deploy(
+       initial_instance_count=1,
+       instance_type='local',
+       ...
+   )
+
+Remote Functions
+===============
+
+Execute Python functions remotely on SageMaker infrastructure:
+
+.. code:: python
+
+   from sagemaker.remote_function import remote
+   
+   @remote
+   def train_model(hyperparameters):
+       # This code runs on SageMaker
+       import numpy as np
+       # Your training code here
+       return model_artifacts
+   
+   # Call the function - executes on SageMaker
+   model = train_model({"learning_rate": 0.01})
+
+.. toctree::
+    :maxdepth: 1
+
+    remote_function/sagemaker.remote_function
+
+*****************
+Additional Resources
+*****************
+
+- `GitHub Repository <https://github.com/aws/sagemaker-python-sdk>`_
+- `Amazon SageMaker Developer Guide <https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html>`_
+- `API Reference <https://sagemaker.readthedocs.io/en/stable/api/index.html>`_
+- `AWS Machine Learning Blog <https://aws.amazon.com/blogs/machine-learning/>`_
+- `Example Notebooks <https://github.com/aws/amazon-sagemaker-examples>`_
