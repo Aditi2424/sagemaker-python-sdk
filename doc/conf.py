@@ -66,6 +66,8 @@ html_theme_options = {
     "navigation_depth": 6,
     "includehidden": True,
     "titles_only": False,
+    "style_external_links": True,
+    "style_nav_header_background": "#232F3E",  # AWS dark blue
 }
 
 
@@ -86,6 +88,7 @@ html_css_files = [
     "theme_overrides.css",
     "pagination.css",
     "search_accessories.css",
+    "custom.css",
 ]
 
 # Example configuration for intersphinx: refer to the Python standard library.
