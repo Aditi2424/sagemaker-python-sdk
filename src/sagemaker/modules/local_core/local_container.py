@@ -550,6 +550,7 @@ class _LocalContainer(BaseModel):
             parsed_uri = urlparse(uri)
             local_dir = TemporaryDirectory(prefix=os.path.join(self.container_root + "/")).name
             self._temporary_folders.append(local_dir)
+            os.makedirs(local_dir, exist_ok=True)
             download_folder(parsed_uri.netloc, parsed_uri.path, local_dir, self.sagemaker_session)
             return local_dir
         else:

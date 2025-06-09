@@ -177,3 +177,48 @@ def test_generate_compose_file(local_container, environment, shared_volumes):
     docker_compose_path = os.path.join(local_container.container_root, DOCKER_COMPOSE_FILENAME)
     assert os.path.exists(docker_compose_path)
     os.remove(docker_compose_path)
+
+
+@pytest.fixture
+def mock_s3_data_source():
+    from sagemaker.modules.configs import S3DataSource
+    from sagemaker_core.shapes import DataSource
+    
+    return DataSource(
+        s3_data_source=S3DataSource(
+            s3_data_type="S3Prefix",
+            s3_uri="s3://my-bucket/my-single-file.csv",
+            s3_data_distribution_type="FullyReplicated",
+        ),
+    )
+
+
+@pytest.fixture
+def mock_session():
+    from unittest.mock import MagicMock
+    
+    session = MagicMock()
+    session.s3_resource = MagicMock()
+    return session
+
+
+def test_get_data_source_local_path_s3_single_file(local_container, mock_s3_data_source, mock_session, monkeypatch):
+    """Test that _get_data_source_local_path correctly handles single S3 files."""
+    from unittest.mock import patch, MagicMock
+    
+    # Set the session on the local_container
+    local_container.sagemaker_session = mock_session
+    
+    # Mock the download_folder function to verify it's called with the right parameters
+    with patch('sagemaker.modules.local_core.local_container.download_folder') as mock_download:
+        # Call the method under test
+        local_dir = local_container._get_data_source_local_path(mock_s3_data_source)
+        
+        # Verify the directory was created
+        assert os.path.exists(local_dir)
+        
+        # Verify download_folder was called with the right parameters
+        mock_download.assert_called_once()
+        
+        # Clean up the temporary directory
+        shutil.rmtree(local_dir, ignore_errors=True)

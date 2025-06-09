@@ -222,3 +222,74 @@ def test_multi_container_local_mode(modules_sagemaker_session):
             for directory in directories:
                 path = os.path.join(CWD, directory)
                 delete_local_path(path)
+
+
+def test_single_container_local_mode_s3_single_file(modules_sagemaker_session):
+    """Test that ModelTrainer works correctly when input_data points to a single S3 file."""
+    with lock.lock(LOCK_PATH):
+        try:
+            # Create a single file and upload it to S3
+            session = modules_sagemaker_session
+            bucket = session.default_bucket()
+            
+            # Create a temporary file
+            with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as tmp:
+                tmp.write(b"col1,col2\n1,2\n3,4\n")
+                tmp_file_path = tmp.name
+            
+            # Upload the file to S3
+            s3_key = "data/single_file.csv"
+            session.upload_data(
+                path=tmp_file_path,
+                bucket=bucket,
+                key_prefix=s3_key,
+            )
+            os.unlink(tmp_file_path)  # Remove the temporary file
+            
+            source_code = SourceCode(
+                source_dir=SOURCE_DIR,
+                entry_script="local_training_script.py",
+            )
+
+            compute = Compute(
+                instance_type="local_cpu",
+                instance_count=1,
+            )
+
+            # Use the single file as input data
+            input_data = InputData(
+                channel_name="input",
+                data_source=f"s3://{bucket}/{s3_key}",
+            )
+
+            model_trainer = ModelTrainer(
+                training_image=DEFAULT_CPU_IMAGE,
+                sagemaker_session=modules_sagemaker_session,
+                source_code=source_code,
+                compute=compute,
+                input_data_config=[input_data],
+                base_job_name="local_mode_single_file",
+                training_mode=Mode.LOCAL_CONTAINER,
+                local_container_root=".smlocal",  # Use a custom directory to match the bug report
+            )
+
+            model_trainer.train()
+            assert os.path.exists(os.path.join(".smlocal", "compressed_artifacts/model.tar.gz"))
+
+        finally:
+            subprocess.run(["docker", "compose", "down", "-v"])
+
+            directories = [
+                "compressed_artifacts",
+                "artifacts",
+                "model",
+                "output",
+            ]
+
+            # Clean up the custom directory
+            for directory in directories:
+                path = os.path.join(".smlocal", directory)
+                delete_local_path(path)
+            
+            # Remove the root directory if it exists
+            delete_local_path(".smlocal")
