@@ -10,6 +10,7 @@
 
  * Update Attrs version to widen support
  * update estimator documentation regarding hyperparameters for source_dir
+ * Fix "File or directory not found" error when input_data points to a single S3 file in local mode
 
 ## v2.245.0 (2025-05-28)
 
