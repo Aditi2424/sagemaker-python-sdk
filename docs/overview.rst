@@ -30,33 +30,6 @@ What's New in V3
 **Object-Oriented API**
   Structured interface with auto-generated configs aligned with AWS APIs for better developer experience.
 
-.. raw:: html
-
-   <div class="v3-spotlight-feature">
-   <h2>🌟 Spotlight: Model Customization - V3 Exclusive</h2>
-   <p><strong>The most powerful foundation model fine-tuning capabilities ever built into SageMaker SDK.</strong></p>
-   <p>V3 introduces specialized trainer classes designed specifically for large language models and foundation model customization - capabilities that simply don't exist in V2.</p>
-   <div class="spotlight-trainers">
-     <div class="trainer-card">
-       <strong>SFTTrainer</strong><br>
-       Supervised fine-tuning for task-specific adaptation
-     </div>
-     <div class="trainer-card">
-       <strong>DPOTrainer</strong><br>
-       Direct preference optimization without RL complexity
-     </div>
-     <div class="trainer-card">
-       <strong>RLAIFTrainer</strong><br>
-       Reinforcement learning from AI feedback
-     </div>
-     <div class="trainer-card">
-       <strong>RLVRTrainer</strong><br>
-       Reinforcement learning from verifiable rewards
-     </div>
-   </div>
-   <p><em>These advanced fine-tuning techniques with LoRA support, MLflow integration, and 11 built-in evaluation benchmarks are exclusive to V3.</em></p>
-   </div>
-
 Core Capabilities
 ==================
 
