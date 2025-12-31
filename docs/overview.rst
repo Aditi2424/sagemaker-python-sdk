@@ -6,58 +6,74 @@ Welcome to SageMaker Python SDK V3 - a revolutionary approach to machine learnin
 What's New in V3
 -----------------
 
-**Model Customization (V3 Exclusive)**
-  Revolutionary foundation model fine-tuning with specialized trainers:
-  
-  * **SFTTrainer** - Supervised fine-tuning for task-specific adaptation
-  * **DPOTrainer** - Direct preference optimization without RL complexity
-  * **RLAIFTrainer** - Reinforcement learning from AI feedback
-  * **RLVRTrainer** - Reinforcement learning from verifiable rewards
-  
-  Advanced techniques like LoRA, preference optimization, and RLHF that simply don't exist in V2.
+.. raw:: html
 
-**Modular Architecture**
-  Separate PyPI packages for specialized capabilities:
-  
-  * ``sagemaker-core`` - Low-level SageMaker resource management
-  * ``sagemaker-train`` - Unified training with ModelTrainer
-  * ``sagemaker-serve`` - Simplified inference with ModelBuilder  
-  * ``sagemaker-mlops`` - ML operations and pipeline management
+   <div class="whats-new-container">
+     <div class="new-feature-card exclusive">
+       <div class="feature-icon">🎯</div>
+       <h3>Model Customization (V3 Exclusive)</h3>
+       <p>Revolutionary foundation model fine-tuning with specialized trainers:</p>
+       <ul>
+         <li><strong>SFTTrainer</strong> - Supervised fine-tuning for task-specific adaptation</li>
+         <li><strong>DPOTrainer</strong> - Direct preference optimization without RL complexity</li>
+         <li><strong>RLAIFTrainer</strong> - Reinforcement learning from AI feedback</li>
+         <li><strong>RLVRTrainer</strong> - Reinforcement learning from verifiable rewards</li>
+       </ul>
+       <p><em>Advanced techniques like LoRA, preference optimization, and RLHF that simply don't exist in V2.</em></p>
+     </div>
 
-**Unified Classes**
-  Single classes replace multiple framework-specific implementations:
-  
-  * **ModelTrainer** replaces PyTorchEstimator, TensorFlowEstimator, SKLearnEstimator, etc.
-  * **ModelBuilder** replaces PyTorchModel, TensorFlowModel, SKLearnModel, etc.
+     <div class="new-feature-card">
+       <div class="feature-icon">📦</div>
+       <h3>Modular Architecture</h3>
+       <p>Separate PyPI packages for specialized capabilities:</p>
+       <ul>
+         <li><code>sagemaker-core</code> - Low-level SageMaker resource management</li>
+         <li><code>sagemaker-train</code> - Unified training with ModelTrainer</li>
+         <li><code>sagemaker-serve</code> - Simplified inference with ModelBuilder</li>
+         <li><code>sagemaker-mlops</code> - ML operations and pipeline management</li>
+       </ul>
+     </div>
 
-**Object-Oriented API**
-  Structured interface with auto-generated configs aligned with AWS APIs for better developer experience.
+     <div class="new-feature-card">
+       <div class="feature-icon">🔧</div>
+       <h3>Unified Classes</h3>
+       <p>Single classes replace multiple framework-specific implementations:</p>
+       <ul>
+         <li><strong>ModelTrainer</strong> replaces PyTorchEstimator, TensorFlowEstimator, SKLearnEstimator, etc.</li>
+         <li><strong>ModelBuilder</strong> replaces PyTorchModel, TensorFlowModel, SKLearnModel, etc.</li>
+       </ul>
+     </div>
 
-Core Capabilities
-==================
+     <div class="new-feature-card">
+       <div class="feature-icon">⚡</div>
+       <h3>Object-Oriented API</h3>
+       <p>Structured interface with auto-generated configs aligned with AWS APIs for better developer experience.</p>
+     </div>
+   </div>
 
-Model Customization (V3 Exclusive)
------------------------------------
+Capabilities
+==============
 
-Revolutionary foundation model fine-tuning with specialized trainers built for the era of large language models:
+Model Customization
+--------------------
+
+Advanced foundation model fine-tuning with specialized trainer classes for cutting-edge techniques:
 
 .. code-block:: python
 
-   from sagemaker.train import SFTTrainer, DPOTrainer
+   from sagemaker.train import SFTTrainer
    from sagemaker.train.common import TrainingType
 
-   # Supervised Fine-Tuning
-   sft_trainer = SFTTrainer(
+   trainer = SFTTrainer(
        model="meta-llama/Llama-2-7b-hf",
        training_type=TrainingType.LORA,
-       training_dataset="s3://bucket/training-data.jsonl"
+       model_package_group_name="my-custom-models",
+       training_dataset="s3://my-bucket/training-data.jsonl"
    )
-   
-   # Direct Preference Optimization
-   dpo_trainer = DPOTrainer(
-       model="my-base-model",
-       preference_dataset="s3://bucket/preference-data.jsonl"
-   )
+
+   training_job = trainer.train()
+
+:doc:`Learn more about Model Customization <model_customization/index>`
 
 Training with ModelTrainer
 ---------------------------
@@ -101,27 +117,6 @@ Simplified model deployment and inference with automatic optimization and flexib
    result = endpoint.invoke({"inputs": "your-input-data"})
 
 :doc:`Learn more about Inference <inference/index>`
-
-Model Customization
---------------------
-
-Advanced foundation model fine-tuning with specialized trainer classes for cutting-edge techniques:
-
-.. code-block:: python
-
-   from sagemaker.train import SFTTrainer
-   from sagemaker.train.common import TrainingType
-
-   trainer = SFTTrainer(
-       model="meta-llama/Llama-2-7b-hf",
-       training_type=TrainingType.LORA,
-       model_package_group_name="my-custom-models",
-       training_dataset="s3://my-bucket/training-data.jsonl"
-   )
-
-   training_job = trainer.train()
-
-:doc:`Learn more about Model Customization <model_customization/index>`
 
 ML Operations
 -------------
