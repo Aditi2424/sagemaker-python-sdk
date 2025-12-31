@@ -8,21 +8,22 @@
     margin-bottom: 20px;
 }
 
-/* Highlight model customization section */
-.model-customization-highlight {
-    border: 2px solid #3498db;
-    background-color: #ecf0f1;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+/* V3 Exclusive Feature Styling */
+.v3-exclusive-feature {
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    border-left: 5px solid #ff4757;
 }
 
-/* Custom styling for notebook examples */
-.notebook-example {
-    background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
-    padding: 10px;
-    margin: 10px 0;
+.v3-exclusive-feature strong {
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* Typography */
@@ -47,88 +48,4 @@ h3 {
 p {
     font-size: 1.0rem;
     color: #4b5563;
-}
-/* V3 Exclusive Feature Styling */
-.v3-exclusive-feature {
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 20px 0;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-    border-left: 5px solid #ff4757;
-}
-
-.v3-exclusive-feature strong {
-    font-size: 1.1em;
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Highlight model customization in navigation */
-a[href*="model_customization"] {
-    background: linear-gradient(90deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
-    border-left: 3px solid #ff6b6b;
-    padding-left: 8px;
-    font-weight: 600;
-}
-
-a[href*="model_customization"]:before {
-    content: "🆕 ";
-    font-size: 0.9em;
-}
-/* V3 Spotlight Feature Styling */
-.v3-spotlight-feature {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 25px 30px;
-    border-radius: 12px;
-    margin: 30px 0;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.v3-spotlight-feature h2 {
-    margin-top: 0;
-    color: white;
-    font-size: 1.4em;
-    text-align: center;
-}
-
-.spotlight-trainers {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.trainer-card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-}
-
-.trainer-card strong {
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    color: #ffd700;
-}
-/* Subtle V3 New Feature Highlight */
-.v3-new-feature-highlight {
-    background: linear-gradient(90deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
-    border-left: 4px solid #ff6b6b;
-    padding: 15px 20px;
-    margin: 15px 0;
-    border-radius: 6px;
-    font-size: 1.05em;
-}
-
-.v3-new-feature-highlight strong {
-    color: #ff4757;
-    font-size: 1.1em;
 }
