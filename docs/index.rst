@@ -17,9 +17,9 @@ SageMaker Python SDK V3
    :caption: Core Capabilities
    :hidden:
    
+   model_customization/index
    training/index
    inference/index
-   model_customization/index
    ml_ops/index
    sagemaker_core/index
 
