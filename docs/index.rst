@@ -14,7 +14,7 @@ SageMaker Python SDK V3
 
 .. toctree::
    :maxdepth: 2
-   :caption: Core Capabilities
+   :caption: V3 Capabilities
    :hidden:
    
    model_customization/index
