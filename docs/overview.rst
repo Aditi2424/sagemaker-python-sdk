@@ -6,6 +6,13 @@ Welcome to SageMaker Python SDK V3 - a revolutionary approach to machine learnin
 What's New in V3
 -----------------
 
+.. raw:: html
+
+   <div class="v3-new-feature-highlight">
+   <strong>🆕 Model Customization (V3 Exclusive)</strong><br>
+   Revolutionary foundation model fine-tuning with specialized trainers: SFTTrainer, DPOTrainer, RLAIFTrainer, and RLVRTrainer. Advanced techniques like LoRA, preference optimization, and RLHF that simply don't exist in V2.
+   </div>
+
 **Modular Architecture**
   Separate PyPI packages for specialized capabilities:
   
