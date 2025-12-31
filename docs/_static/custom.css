@@ -131,6 +131,15 @@ p {
     background: rgba(255, 255, 255, 0.2);
     color: white;
 }
+/* Collapse navigation tree items by default */
+.bd-toc .toctree-l1 > ul {
+    display: none;
+}
+
+.bd-toc .toctree-l1.current > ul {
+    display: block;
+}
+
 /* Collapse left navigation by default */
 .bd-sidebar {
     transform: translateX(-100%);
