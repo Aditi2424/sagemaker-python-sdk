@@ -3,6 +3,26 @@ Overview
 
 Welcome to SageMaker Python SDK V3 - a revolutionary approach to machine learning on Amazon SageMaker. Version 3.0 represents a significant milestone with modernized architecture, enhanced performance, and powerful new capabilities while maintaining our commitment to user experience and reliability.
 
+What's New in V3
+-----------------
+
+**Modular Architecture**
+  Separate PyPI packages for specialized capabilities:
+  
+  * ``sagemaker-core`` - Low-level SageMaker resource management
+  * ``sagemaker-train`` - Unified training with ModelTrainer
+  * ``sagemaker-serve`` - Simplified inference with ModelBuilder  
+  * ``sagemaker-mlops`` - ML operations and pipeline management
+
+**Unified Classes**
+  Single classes replace multiple framework-specific implementations:
+  
+  * **ModelTrainer** replaces PyTorchEstimator, TensorFlowEstimator, SKLearnEstimator, etc.
+  * **ModelBuilder** replaces PyTorchModel, TensorFlowModel, SKLearnModel, etc.
+
+**Object-Oriented API**
+  Structured interface with auto-generated configs aligned with AWS APIs for better developer experience.
+
 .. raw:: html
 
    <div class="v3-spotlight-feature">
@@ -29,26 +49,6 @@ Welcome to SageMaker Python SDK V3 - a revolutionary approach to machine learnin
    </div>
    <p><em>These advanced fine-tuning techniques with LoRA support, MLflow integration, and 11 built-in evaluation benchmarks are exclusive to V3.</em></p>
    </div>
-
-What's New in V3
------------------
-
-**Modular Architecture**
-  Separate PyPI packages for specialized capabilities:
-  
-  * ``sagemaker-core`` - Low-level SageMaker resource management
-  * ``sagemaker-train`` - Unified training with ModelTrainer
-  * ``sagemaker-serve`` - Simplified inference with ModelBuilder  
-  * ``sagemaker-mlops`` - ML operations and pipeline management
-
-**Unified Classes**
-  Single classes replace multiple framework-specific implementations:
-  
-  * **ModelTrainer** replaces PyTorchEstimator, TensorFlowEstimator, SKLearnEstimator, etc.
-  * **ModelBuilder** replaces PyTorchModel, TensorFlowModel, SKLearnModel, etc.
-
-**Object-Oriented API**
-  Structured interface with auto-generated configs aligned with AWS APIs for better developer experience.
 
 Core Capabilities
 ==================
