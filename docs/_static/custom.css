@@ -140,6 +140,15 @@ p {
     display: block;
 }
 
+/* Also collapse deeper levels */
+.bd-toc .toctree-l2 > ul {
+    display: none;
+}
+
+.bd-toc .toctree-l2.current > ul {
+    display: block;
+}
+
 
 /* Highlight model customization in navigation */
 .bd-toc a[href*="model_customization"], 
