@@ -140,31 +140,7 @@ p {
     display: block;
 }
 
-/* Collapse left navigation by default */
-.bd-sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-}
 
-.bd-sidebar.show {
-    transform: translateX(0);
-}
-
-/* Adjust main content when sidebar is collapsed */
-.bd-main {
-    margin-left: 0 !important;
-}
-
-/* Show sidebar on larger screens */
-@media (min-width: 768px) {
-    .bd-sidebar {
-        transform: translateX(0);
-    }
-    
-    .bd-main {
-        margin-left: 250px !important;
-    }
-}
 /* Highlight model customization in navigation */
 .bd-toc a[href*="model_customization"], 
 .toctree-l1 a[href*="model_customization"] {
