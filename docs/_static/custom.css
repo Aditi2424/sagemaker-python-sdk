@@ -166,16 +166,19 @@ p {
     }
 }
 /* Highlight model customization in navigation */
-a[href*="model_customization"] {
+.bd-toc a[href*="model_customization"], 
+.toctree-l1 a[href*="model_customization"] {
     background: linear-gradient(90deg, rgba(255, 107, 107, 0.15), rgba(78, 205, 196, 0.15));
     border-left: 4px solid #ff6b6b;
     padding-left: 12px;
     font-weight: 600;
     border-radius: 4px;
     margin: 2px 0;
+    display: block;
 }
 
-a[href*="model_customization"]:before {
+.bd-toc a[href*="model_customization"]:before,
+.toctree-l1 a[href*="model_customization"]:before {
     content: "⭐ ";
     color: #ff4757;
     font-size: 0.9em;
