@@ -3,6 +3,33 @@ Overview
 
 Welcome to SageMaker Python SDK V3 - a revolutionary approach to machine learning on Amazon SageMaker. Version 3.0 represents a significant milestone with modernized architecture, enhanced performance, and powerful new capabilities while maintaining our commitment to user experience and reliability.
 
+.. raw:: html
+
+   <div class="v3-spotlight-feature">
+   <h2>🌟 Spotlight: Model Customization - V3 Exclusive</h2>
+   <p><strong>The most powerful foundation model fine-tuning capabilities ever built into SageMaker SDK.</strong></p>
+   <p>V3 introduces specialized trainer classes designed specifically for large language models and foundation model customization - capabilities that simply don't exist in V2.</p>
+   <div class="spotlight-trainers">
+     <div class="trainer-card">
+       <strong>SFTTrainer</strong><br>
+       Supervised fine-tuning for task-specific adaptation
+     </div>
+     <div class="trainer-card">
+       <strong>DPOTrainer</strong><br>
+       Direct preference optimization without RL complexity
+     </div>
+     <div class="trainer-card">
+       <strong>RLAIFTrainer</strong><br>
+       Reinforcement learning from AI feedback
+     </div>
+     <div class="trainer-card">
+       <strong>RLVRTrainer</strong><br>
+       Reinforcement learning from verifiable rewards
+     </div>
+   </div>
+   <p><em>These advanced fine-tuning techniques with LoRA support, MLflow integration, and 11 built-in evaluation benchmarks are exclusive to V3.</em></p>
+   </div>
+
 What's New in V3
 -----------------
 
@@ -25,6 +52,29 @@ What's New in V3
 
 Core Capabilities
 ==================
+
+Model Customization (V3 Exclusive)
+-----------------------------------
+
+Revolutionary foundation model fine-tuning with specialized trainers built for the era of large language models:
+
+.. code-block:: python
+
+   from sagemaker.train import SFTTrainer, DPOTrainer
+   from sagemaker.train.common import TrainingType
+
+   # Supervised Fine-Tuning
+   sft_trainer = SFTTrainer(
+       model="meta-llama/Llama-2-7b-hf",
+       training_type=TrainingType.LORA,
+       training_dataset="s3://bucket/training-data.jsonl"
+   )
+   
+   # Direct Preference Optimization
+   dpo_trainer = DPOTrainer(
+       model="my-base-model",
+       preference_dataset="s3://bucket/preference-data.jsonl"
+   )
 
 Training with ModelTrainer
 ---------------------------
